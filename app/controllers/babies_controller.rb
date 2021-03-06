@@ -2,7 +2,7 @@ class BabiesController < ApplicationController
 
   # GET: /babies
   get "/babies" do
-    erb :"/babies/index.html"
+    erb :'/babies/index'
   end
 
   # GET: /babies/new

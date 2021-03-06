@@ -18,7 +18,7 @@
         belongs to user         age    gender
     updates                 
         belongs to baby         weight  height
-                                summay  baby_id?
+                                summary  baby_id?
 
 
 

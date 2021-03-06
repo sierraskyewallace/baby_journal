@@ -5,3 +5,6 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 run ApplicationController
+use UpdatesController
+use BabiesController
+use UsersController

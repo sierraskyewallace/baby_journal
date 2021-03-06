@@ -1,4 +1,4 @@
-class BabyController < ApplicationController
+class BabiesController < ApplicationController
 
   # GET: /babies
   get "/babies" do

@@ -1,4 +1,4 @@
-class UpdateController < ApplicationController
+class UpdatesController < ApplicationController
 
   # GET: /updates
   get "/updates" do

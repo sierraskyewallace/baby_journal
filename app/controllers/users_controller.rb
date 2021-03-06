@@ -19,4 +19,6 @@ class UsersController < ApplicationController
 
   get '/logout' do 
   end
+end
+
 

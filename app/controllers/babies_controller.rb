@@ -25,7 +25,6 @@ class BabiesController < ApplicationController
     redirect "/babies"  #may need to change 
   end
 end
-  end
 
   # GET: /babies/5
   get "/babies/:id" do
@@ -52,6 +51,7 @@ end
     @babies.update(params.select{|p|p=="name" || p=="age" || p=="gender" || p=="user_id"})
     redirect "/babies/#{@babies.id}"
   end
+
 
   # DELETE: /babies/5/delete
   delete "/babies/:id/delete" do

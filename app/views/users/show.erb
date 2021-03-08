@@ -1,1 +1,6 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<p> Hello, <%= @user.username %>
+<% @user.babies.each do |bag| %>
+  <ul>
+    <li><a href="/babies/<%=bag.id%>"><%= babies.name %></a></li>
+  </ul>
+<% end %>

@@ -49,7 +49,7 @@ end
     unless Baby.valid_params?(params)
       redirect "/babies/#{@babies.id}/edit?error=No Babies Here!"
     end
-    @babies.update(params.select{|k|k=="name" || k=="capacity"})
+    @babies.update(params.select{|p|p=="name" || p=="age" || p=="gender" || p=="user_id"})
     redirect "/babies/#{@babies.id}"
   end
 

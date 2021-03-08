@@ -9,27 +9,44 @@ class UpdatesController < ApplicationController
 
   # GET: /updates/new
   get "/updates/new" do
-    erb :"/updates/new.html"
+    redirect_if_not_logged_in
+    @error_message = params[:error]
+    erb :"updates/new"
   end
 
   # POST: /updates
   post "/updates" do
+    redirect_if_not_logged_in 
+    unless Update.valid_params?(params)
+      redirect "/updates/new?error=No Updates Here!"
+    end
+    Update.create(params)
     redirect "/updates"
-  end
 
   # GET: /updates/5
   get "/updates/:id" do
-    erb :"/updates/show.html"
+    redirect_if_not_logged_in 
+    @updates = Update.find(params[:id])
+    erb :'updates/show'
   end
 
   # GET: /updates/5/edit
   get "/updates/:id/edit" do
-    erb :"/updates/edit.html"
+    redirect_if_not_logged_in 
+    @error_message = params[:error]
+    @updates = Update.find(params[:id])
+    erb :'updates/edit'
   end
 
   # PATCH: /updates/5
   patch "/updates/:id" do
-    redirect "/updates/:id"
+    redirect_if_not_logged_in 
+    @updates = Update.find(params[:id])
+    unless Update.valid_params?(params)
+      redirect "/updates/#{@club.id}/edit?error=No Updates Here!"
+    end
+    @updates.update(params.select{|p|p=="weight" || p=="height" || p=="baby_id"})
+    redirect "/clubs/#{@club.id}"
   end
 
   # DELETE: /updates/5/delete

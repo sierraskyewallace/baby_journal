@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   
   get '/register' do 
+    "hello"
   end
 
   post '/signup' do 

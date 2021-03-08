@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   get '/users/:id' do 
+    @users = User.find(params[:id])
+    erb :"users/index"
   end
 
   get '/login' do 
@@ -14,7 +16,7 @@ class UsersController < ApplicationController
     "hello"
   end
 
-  post '/signup' do 
+  post '/register' do 
   end
 
 

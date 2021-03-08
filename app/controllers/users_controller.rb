@@ -2,13 +2,13 @@ class UsersController < ApplicationController
 
   get '/users/:id' do 
     if !logged_in?
-      redirect '/index'   #may need to change to specific login page 
+      redirect '/login'   #may need to change to specific login page 
   end
   @user = User.find(params[:id])
   if !@user.nil? && @user == current_user
     erb :'users/show'
   else
-    redirect '/index' #may need to change to specific login page
+    redirect '/login' #may need to change to specific login page
   end
 end
   get '/login' do 
@@ -16,7 +16,7 @@ end
     if !session[:user_id]
       erb :'users/login'
     else
-      redirect '/index'  #may need to change to specific login page
+      redirect '/login'  #may need to change to specific login page
     end
   end
   end
@@ -25,12 +25,12 @@ end
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/index"  # ^^
+      redirect "/login"  # ^^
     else
       redirect to '/register'
     end
   end
-  end
+  
 
   
   get '/register' do 
@@ -40,18 +40,18 @@ end
       redirect to "/index"  #^^
     end
   end
-  end
+  
 
   post '/register' do 
-    if params[:username] == "" || params[:password] == ""
+    if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/register'
     else
-      @user = User.create(:username => params[:username], :password => params[:password])
+      @user = User.create(:username => params[:username], :email => params[:email] :password => params[:password])
       session[:user_id] = @user.id
       redirect '/index'   #^^
     end
   end
-  end
+
 
 
   get '/logout' do 

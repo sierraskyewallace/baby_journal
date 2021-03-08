@@ -51,6 +51,8 @@ class UpdatesController < ApplicationController
 
   # DELETE: /updates/5/delete
   delete "/updates/:id/delete" do
+    @updates = Update.find(params[:id])
+    Update.destroy 
     redirect "/updates"
   end
 end

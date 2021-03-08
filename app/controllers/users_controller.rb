@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get '/users/:id' do 
     @users = User.find(params[:id])
-    erb :"users/index"
+    erb :"users/show"
   end
 
   get '/login' do 

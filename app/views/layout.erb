@@ -5,20 +5,19 @@
    <! -- bootstrap here >
   </head>
   <body>
-    <nav>
+     <nav>
+
       <% if logged_in? %>
 
         <a href="/updates/new"> Create Update </a>
         <a href="/logout"> Log Out </a>
         <p>Welcome, <%=current_user.username %></p>
-
       <% else %>
         <a href="/register">Register</a>
         <a href="/login"> Login </a>
       <%end %>
-
-      <%= yield %> 
-      </nav>
+    <%= yield %>
+    </nav>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <! -- bootstrap >
   </body>

@@ -5,4 +5,3 @@ class Update < ActiveRecord::Base
         return !params[:name].empty? && !params[:manufacturer].empty?
       end
     end
-end

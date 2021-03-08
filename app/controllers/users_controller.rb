@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     redirect '/login' #may need to change to specific login page
   end
 end
+
   get '/login' do 
     @error_message = params[:error]
     if !session[:user_id]
@@ -19,7 +20,7 @@ end
       redirect '/login'  #may need to change to specific login page
     end
   end
-  end
+end
 
   post '/login' do 
     user = User.find_by(:username => params[:username])
@@ -46,7 +47,7 @@ end
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/register'
     else
-      @user = User.create(:username => params[:username], :email => params[:email] :password => params[:password])
+      @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
       session[:user_id] = @user.id
       redirect '/index'   #^^
     end
@@ -62,6 +63,6 @@ end
       redirect to '/'
     end
   end
-end
+
 
 

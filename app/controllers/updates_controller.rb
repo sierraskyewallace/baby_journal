@@ -22,6 +22,8 @@ class UpdatesController < ApplicationController
     end
     Update.create(params)
     redirect "/updates"
+  end
+  
 
   # GET: /updates/5
   get "/updates/:id" do

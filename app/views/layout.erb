@@ -1,32 +1,25 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<html>
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-
-    <title>BabyJournal</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <title>Baby Journal</title>
+   <! -- bootstrap here >
   </head>
   <body>
-    <div class="wrapper">
+    <nav>
+      <% if logged_in? %>
 
-        <%= yield %>
+        <a href="/updates/new"> Create Update </a>
+        <a href="/logout"> Log Out </a>
+        <p>Welcome, <%=current_user.username %></p>
 
-      <footer class="branding">
-        <small>&copy; 2021 <strong>BabyJournal</strong></small>
-      </footer>
-    </div>
+      <% else %>
+        <a href="/register">Register</a>
+        <a href="/login"> Login </a>
+      <%end %>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <!--[if lt IE 7]>
-      <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
-      <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
-    <![endif]-->
+      <%= yield %> 
+      </nav>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <! -- bootstrap >
   </body>
 </html>

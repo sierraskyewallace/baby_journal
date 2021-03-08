@@ -24,7 +24,6 @@ class BabiesController < ApplicationController
     Baby.create(params)
     redirect "/babies"  #may need to change 
   end
-end
 
   # GET: /babies/5
   get "/babies/:id" do
@@ -59,4 +58,4 @@ end
     Baby.destroy 
     redirect "/babies/show"
   end
-end
+end 

@@ -2,7 +2,9 @@ class UpdatesController < ApplicationController
 
   # GET: /updates
   get "/updates" do
-    erb :"/updates/index.html"
+    redirect_if_not_logged_in
+    @updates = Update.all 
+    erb :"updates/index"
   end
 
   # GET: /updates/new

@@ -2,23 +2,29 @@
 <html>
   <head>
     <title>Baby Journal</title>
-   <! -- bootstrap here >
+    <link href="/css/bootstrap.css"rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css"rel="stylesheet">
   </head>
   <body>
-     <nav>
+  <style>
+  body {
+    background-image:url('/img/watercolor.png');
+    text-align: center;
+  }
+  </style>
+  <% if logged_in? %>
 
-      <% if logged_in? %>
+  <a href="/babies/new"> Create Update </a>
+  <a href="/logout"> Log Out </a>
+  <p>Welcome, <%=current_user.username %></p>
 
-        <a href="/updates/new"> Create Update </a>
-        <a href="/logout"> Log Out </a>
-        <p>Welcome, <%=current_user.username %></p>
-      <% else %>
-        <a href="/register">Register</a>
-        <a href="/login"> Login </a>
-      <%end %>
-    <%= yield %>
-    </nav>
+<% else %>
+  <a href="/reigster">Sign Up</a>
+  <a href="/login"> Sign In </a>
+<%end %>
+      <%= yield %>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <! -- bootstrap >
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>

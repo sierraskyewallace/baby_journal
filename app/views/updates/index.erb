@@ -1,1 +1,8 @@
-<h1>This is the Model's index page.</h1>
+<% @updates.each do |update| %>
+    <%= update.weight %><br />
+    <%= update.height %> <br />
+    <%= update.summary %> <br />
+    <a href="/updates/<%=update.id%>/edit">Edit</a>
+    <br />
+    <br />
+  <% end %>

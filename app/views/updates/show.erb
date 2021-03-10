@@ -1,1 +1,6 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<%= @babies.height %><br />
+  <%= @babies.weight %> <br />
+  Baby: <a href="/babies/<%=@babies.baby.id%>"><%= @babies.baby.name %></a> <br />
+  <a href="/babies/<%=@babies.id%>/edit">Edit</a>
+  <br />
+  <br />

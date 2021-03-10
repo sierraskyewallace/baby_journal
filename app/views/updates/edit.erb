@@ -1,1 +1,22 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+  
+<h1>Edit Update</h1>
+
+<form action="/updatess/<%=@updates.id %>" method="POST">
+  <label> Weight </label>
+  <input type="text" name="weight" value="<%=@updates.weight %>"> </br>
+
+  <label> Height </label>
+  <input type="text" name="height" value="<%=@updates.height%>"> </br>
+
+  <label> Summary </label>
+  <input type="text" name="summary" value="<%=@updates.summary%>"> </br>
+
+  <label> Baby </label>
+  <select name="baby_id">
+    <% current_user.babies.each do |baby| %>
+      <option value=<%=baby.id %> <%= "selected" if baby.id==@updates.baby.id %> ><%= baby.name %></option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Update">
+</form>

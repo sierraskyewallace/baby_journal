@@ -1,1 +1,21 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Create an Update</h1>
+
+<form action="/updates" method="POST">
+  <label> Baby Weight </label>
+  <input type="number" name="weight"> </br>
+
+  <label> Baby Height </label>
+  <input type="number" name="manufacturer"> </br>
+
+  <label> Summary </label>
+  <input type="text" name="summary"> </br>
+
+  <label> Baby </label>
+  <select name="baby_id">
+    <% current_user.baby.each do |baby| %>
+      <option value=<%=bbabyag.id %>><%= baby.name %></option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Create">
+</form>

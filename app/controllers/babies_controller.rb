@@ -1,10 +1,10 @@
 class BabiesController < ApplicationController
 
   # GET: /babies
-  get "/babies" do
+  get '/babies' do
     redirect_if_not_logged_in
     @babies = Baby.all
-    erb :"/babies/index"
+    erb :'/babies/index'
   end
 
   # GET: /babies/new
@@ -28,7 +28,7 @@ class BabiesController < ApplicationController
   # GET: /babies/5
   get "/babies/:id" do
     redirect_if_not_logged_in
-    @babies = Baby.find(params[:id])
+    @babies = Baby.find_by(params[:user_id])
     erb :'babies/show'
   end
 
@@ -36,14 +36,14 @@ class BabiesController < ApplicationController
   get "/babies/:id/edit" do
     redirect_if_not_logged_in
     @error_message = params[:error]
-    @babies = Baby.find(params[:id])
+    @babies = Baby.find_by(params[:user_id])
     erb :'babies/edit'
   end
 
   # PATCH: /babies/5
   patch "/babies/:id" do
     redirect_if_not_logged_in
-    @babies = Baby.find(params[:id])
+    @babies = Baby.find_by(params[:id])
     unless Baby.valid_params?(params)
       redirect "/babies/#{@babies.id}/edit?error=No Babies Here!"
     end
@@ -54,7 +54,7 @@ class BabiesController < ApplicationController
 
   # DELETE: /babies/5/delete
   delete "/babies/:id/delete" do
-    @babies = Baby.find(params[:id])
+    @babies = Baby.find_by(params[:id])
     Baby.destroy 
     redirect "/babies/show"
   end

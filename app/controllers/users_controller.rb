@@ -20,15 +20,15 @@ end
     if !session[:user_id]
       erb :'users/login'
     else
-      redirect '/login'  #may need to change to specific login page
+      redirect '/babies'  #may need to change to specific login page
     end
   end
 
-  post '/login' do
+  post "/login" do
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/babies/show"
+      redirect "/babies"
     else
       redirect to '/register'
     end
@@ -59,7 +59,7 @@ end
 
   get '/logout' do 
     if session[:user_id] != nil
-      session.destroy
+      session.clear
       redirect to '/login'
     else
       redirect to '/'

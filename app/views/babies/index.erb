@@ -1,14 +1,7 @@
-<%= @babies.name %> <br>
-<%= @babies.age %> <br>
-
-<h2>Updates</h2>
-<ul>
-<% @babies.updates.each do |update| %>
-  <li><a href="/updates/<%=update.id%>"><%= update.weight %></a></li>
-  <li><a href="/updates/<%=update.id%>"><%= update.height %></a></li>
-  <li><a href="/updates/<%=update.id%>"><%= update.summary %></a></li>
-<% end%>
-</ul>
-<a href="/babies/<%=@babies.id%>/edit">Edit</a>
-<br />
-<br />
+<% @babies.each do |baby| %>
+    <%= baby.name %><br />
+    <%= baby.age %> <br />
+    <a href="/babies/<%=baby.id%>/edit">Edit</a>
+    <br />
+    <br />
+  <% end %> 

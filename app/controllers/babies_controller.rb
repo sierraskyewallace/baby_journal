@@ -32,7 +32,7 @@ end
   # GET: /babies/5
   get "/babies/:id" do
     redirect_if_not_logged_in
-    @babies = Baby.find_by(params[:user_id])
+    @babies = Baby.find(params[:id])
     erb :'babies/show'
   end
 
@@ -40,25 +40,25 @@ end
   get "/babies/:id/edit" do
     redirect_if_not_logged_in
     @error_message = params[:error]
-    @babies = Baby.find_by(params[:user_id])
+    @babies = Baby.find_by(params[:id])
     erb :'babies/edit'
   end
 
   # PATCH: /babies/5
-  patch "/babies/:id" do
+  post "/babies/:id" do
     redirect_if_not_logged_in
-    @babies = Baby.find_by(params[:id])
+    @babies = Baby.find(params[:id])
     unless Baby.valid_params?(params)
-      redirect "/babies/#{@babies.id}/edit?error=No Babies Here!"
+      redirect "/babies/#{@babies.id}/edit?error=No Babies Here"
     end
-    @babies.update(params.select{|p|p=="name" || p=="age" || p=="gender" || p=="user_id"})
+    @babies.update(params.select{|p|p=="name" || p=="age" || p=="age"})
     redirect "/babies/#{@babies.id}"
   end
 
 
   # DELETE: /babies/5/delete
   delete "/babies/:id/delete" do
-    @babies = Baby.find_by(params[:id])
+    @babies = Baby.find(params[:id])
     Baby.destroy 
     redirect "/babies/show"
   end

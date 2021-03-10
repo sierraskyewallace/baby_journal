@@ -1,7 +1,8 @@
 
 <% @babies.each do |baby| %>
-    <%= baby.name %><br />
-    <%= baby.age %> <br />
+    <%= baby.name %><br>
+    <%= baby.age %> <br>
+    <%= baby.gender %> <br>
     <a href="/babies/<%=baby.id%>/edit">Edit</a>
     <br />
     <br />

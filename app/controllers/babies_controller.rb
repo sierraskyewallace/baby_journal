@@ -4,7 +4,7 @@ class BabiesController < ApplicationController
   get "/babies" do
     redirect_if_not_logged_in
     @babies = Baby.all
-    erb :"/baby/index"
+    erb :"/babies/index"
   end
 
   # GET: /babies/new

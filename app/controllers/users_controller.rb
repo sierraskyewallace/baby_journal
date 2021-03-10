@@ -1,4 +1,7 @@
+require './config/environment'
+require 'rack-flash'
 class UsersController < ApplicationController
+  use Rack::Flash 
 
   get '/users/:id' do 
     if !logged_in?
@@ -20,13 +23,12 @@ end
       redirect '/login'  #may need to change to specific login page
     end
   end
-end
 
-  post '/login' do 
+  post '/login' do
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/login"
+      redirect "/babies/show"
     else
       redirect to '/register'
     end
@@ -63,6 +65,20 @@ end
       redirect to '/'
     end
   end
+
+  get "/users/:slug" do
+    @user = User.find_by_slug(params[:slug])
+    if @user != current_user
+      redirect "/users/#{current_user.slug}"
+    else
+      @babies = @user.babies
+      redirect "/babies/index"
+    end
+  end
+
+   
+
+end
 
 
 

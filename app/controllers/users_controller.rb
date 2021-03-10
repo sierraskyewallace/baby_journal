@@ -26,7 +26,7 @@ end
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/login"  # ^^
+      redirect "/login"
     else
       redirect to '/register'
     end

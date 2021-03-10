@@ -952,6 +952,8 @@
 @media (max-width: 979px) {
   body {
     padding-top: 0;
+    background-image: url(../img/watercolor.png);
+    background-size: cover;
   }
   .navbar-fixed-top,
   .navbar-fixed-bottom {

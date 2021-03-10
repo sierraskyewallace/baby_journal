@@ -3,9 +3,14 @@ class BabiesController < ApplicationController
   # GET: /babies
   get '/babies' do
     redirect_if_not_logged_in
-    @babies = Baby.all
+    @user = current_user
+    @babies = current_user.babies
+    if logged_in?
     erb :'/babies/index'
+    else 
+      redirect '/login'
   end
+end
 
   # GET: /babies/new
   get "/babies/new" do
@@ -17,7 +22,6 @@ class BabiesController < ApplicationController
   # POST: /babies
   post "/babies" do
     rredirect_if_not_logged_in
-
     unless Baby.valid_params?(params)
       redirect "/babies/new?error=No Babies Here!"
     end

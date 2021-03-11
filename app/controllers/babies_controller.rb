@@ -21,11 +21,12 @@ end
 
   # POST: /babies
   post "/babies" do
-    rredirect_if_not_logged_in
+    redirect_if_not_logged_in
     unless Baby.valid_params?(params)
       redirect "/babies/new?error=No Babies Here!"
     end
-    Baby.create(params)
+    @babies = current_user.babies.create(name: params[:name], age: params[:age], gender: params[:gender])
+    @babies.save
     redirect "/babies"  #may need to change 
   end
 

@@ -39,10 +39,11 @@ end
   get '/register' do 
     if !session[:user_id]
       erb :'users/new'
-    else
-      redirect to "/index"  #^^
+    else 
+      redirect '/babies'
     end
   end
+
   
 
   post '/register' do 
@@ -51,7 +52,7 @@ end
     else
       @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
       session[:user_id] = @user.id
-      redirect '/index'   #^^
+      redirect to '/babies'   #^^
     end
   end
 

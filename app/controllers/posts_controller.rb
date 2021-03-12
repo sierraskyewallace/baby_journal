@@ -2,14 +2,15 @@ class PostsController < ApplicationController
 
   # GET: /posts
   get '/posts' do
+    redirect_if_not_logged_in
     @user = current_user
     @posts = current_user.posts
     if logged_in?
-      erb :'/posts/index'
-      else 
-        redirect '/login'
-    end
+    erb :'/posts/index'
+    else 
+      redirect '/login'
   end
+end
 
   # GET: /posts/new
   get "/posts/new" do
@@ -21,11 +22,11 @@ class PostsController < ApplicationController
   # POST: /posts
   post '/posts' do 
     redirect_if_not_logged_in
-      @posts = current_user.posts.build(params)
-      if @posts.save 
-        redirect "/posts"
+      @posts = current_user.posts.create(params)
+      @posts.save 
     end
-  end
+
+
   
 
   # GET: /posts/5

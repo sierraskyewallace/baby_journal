@@ -1,4 +1,4 @@
-class Update < ActiveRecord::Base
+class Post < ActiveRecord::Base
     belongs_to :baby
 
     def self.valid_params?(params)

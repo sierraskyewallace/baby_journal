@@ -3,9 +3,10 @@ class PostsController < ApplicationController
   # GET: /posts
   get '/posts' do
     redirect_if_not_logged_in
-    @user = current_user
-    @posts = current_user.posts
+    @posts = Post.all
     if logged_in?
+      @user = current_user
+      @posts = current_user.posts
     erb :'/posts/index'
     else 
       redirect '/login'
@@ -22,9 +23,12 @@ end
   # POST: /posts
   post '/posts' do 
     redirect_if_not_logged_in
-      @posts = current_user.posts.create(params)
-      @posts.save 
+    unless Post.valid_params?(params)
+      redirect "/posts/new?error=No Posts Here!"
     end
+    @posts = current_user.posts.create(params)
+    redirect '/updates'
+end
 
 
   

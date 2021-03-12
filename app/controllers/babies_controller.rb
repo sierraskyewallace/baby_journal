@@ -3,9 +3,9 @@ class BabiesController < ApplicationController
   # GET: /babies
   get '/babies' do
     redirect_if_not_logged_in
-    @user = current_user
-    @babies = current_user.babies
     if logged_in?
+      @user = current_user
+      @babies = current_user.babies
     erb :'/babies/index'
     else 
       redirect '/login'

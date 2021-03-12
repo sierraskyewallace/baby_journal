@@ -33,7 +33,7 @@ end
   # GET: /babies/5
   get "/babies/:id" do
     redirect_if_not_logged_in
-    @babies = Baby.find(params[:id])
+    @babies = Baby.find_by_id(params[:id])
     erb :'babies/show'
   end
 
@@ -52,7 +52,7 @@ end
     unless Baby.valid_params?(params)
       redirect "/babies/#{@babies.id}/edit?error=No Babies Here"
     end
-    @babies.update(params.select{|p|p=="name" || p=="age" || p=="age"})
+    @babies.update(params.select{|p|p=="name" || p=="age" || p=="gender"})
     redirect "/babies/#{@babies.id}"
   end
 

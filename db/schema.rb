@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_173551) do
+ActiveRecord::Schema.define(version: 2021_03_12_000734) do
 
   create_table "babies", force: :cascade do |t|
     t.string "name"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_03_06_173551) do
     t.string "gender"
   end
 
-  create_table "updates", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.integer "weight"
     t.integer "height"
     t.string "summary"

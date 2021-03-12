@@ -1,0 +1,18 @@
+
+<% @posts.each do |post| %>
+  <%= post.height %><br>
+  <%= post.weight %> <br>
+  <%= post.summary %> <br>
+  <a href="/posts/<%=post.id%>/edit">Edit</a>
+  <form method="post" action="/posts/<%=post.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Post">
+</form>
+
+  <br />
+  <br />
+<% end %>
+
+<br>
+
+<a href="/posts/new">Create Post</a>

@@ -1,6 +1,6 @@
-class CreateUpdates < ActiveRecord::Migration[6.1]
+class CreatePosts < ActiveRecord::Migration[6.1]
   def change
-    create_table :updates do |t| 
+    create_table :posts do |t| 
       t.integer :weight 
       t.integer :height 
       t.string :summary

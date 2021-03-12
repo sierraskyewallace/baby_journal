@@ -1,0 +1,22 @@
+  
+<h1>Edit Post</h1>
+
+<form action="/posts/<%=@posts.id %>" method="POST">
+  <label> Weight </label>
+  <input type="text" name="weight" value="<%=@posts.weight %>"> </br>
+
+  <label> Height </label>
+  <input type="text" name="height" value="<%=@posts.height%>"> </br>
+
+  <label> Summary </label>
+  <input type="text" name="summary" value="<%=@posts.summary%>"> </br>
+
+  <label> Baby </label>
+  <select name="baby_id">
+    <% current_user.babies.each do |baby| %>
+      <option value=<%=baby.id %> <%= "selected" if baby.id==@posts.baby.id %> ><%= baby.name %></option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Post">
+</form>

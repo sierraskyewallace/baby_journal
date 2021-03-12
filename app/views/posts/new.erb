@@ -1,0 +1,21 @@
+<h1>Create a Post</h1>
+
+<form action="/posts" method="POST">
+  <label> Baby Weight </label>
+  <input type="text" name="weight"placeholder="lbs"> </br>
+
+  <label> Baby Height </label>
+  <input type="text" name="height"placeholder="inches"> </br>
+
+  <label> Summary </label>
+  <input type="text" name="summary"placeholder="milestones"> </br>
+
+  <label> Baby </label>
+  <select name="baby_id">
+    <% current_user.babies.each do |baby| %>
+      <option value=<%=baby.id %>><%= baby.name %></option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Create Post">
+</form>

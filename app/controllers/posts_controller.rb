@@ -27,7 +27,7 @@ end
       redirect "/posts/new?error=No Posts Here!"
     end
     @posts = current_user.posts.create(params)
-    redirect '/updates'
+    redirect '/posts'
 end
 
 

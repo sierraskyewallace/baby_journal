@@ -1,5 +1,6 @@
-< ! --- add babies name somehow --- >
+
 <% @posts.each do |post| %>
+  <h1><%= post.baby.name %></h1><br>
   <%= post.height %><br>
   <%= post.weight %> <br>
   <%= post.summary %> <br>

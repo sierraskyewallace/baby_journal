@@ -1,7 +1,7 @@
 require './config/environment'
-require 'rack-flash'
+require 'sinatra/flash'
 class UsersController < ApplicationController
-  use Rack::Flash 
+
 
   get '/users/:id' do 
     if !logged_in?
@@ -29,6 +29,7 @@ end
       session[:user_id] = user.id
       redirect "/babies"
     else 
+      flash.now[:error] = "Incorrect Username/Password. Please try again or Register above."
       erb :"users/login"
     end
   end

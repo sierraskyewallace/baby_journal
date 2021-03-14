@@ -4,7 +4,9 @@
   <h2>Height:<%=  post.height %></h2><br>
  <h2> Weight:<%=  post.weight %></h2> <br>
   <h3> Summary:<%=   post.summary %></h3> <br>
+
 <a href="/posts/<%=post.id%>/edit">Edit</a>
+
 <form method="post" action="/posts/<%= post.id %>/delete">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete Post">

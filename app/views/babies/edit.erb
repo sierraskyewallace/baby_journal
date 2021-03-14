@@ -14,3 +14,7 @@
   <input type="text" name="gender" value="<%=@babies.gender %>"> </br>
   <input type="submit" value="Update">
 </form>
+<form method="post" action="/babies/<%= @babies.id %>/delete">
+      <input id="hidden" type="hidden" name="_method"value="delete">
+      <input type="submit" value="Delete">
+    </form>

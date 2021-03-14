@@ -3,6 +3,7 @@ class BabiesController < ApplicationController
   # GET: /babies
   get '/babies' do
     redirect_if_not_logged_in
+    @babies = Baby.all
     if logged_in?
       @user = current_user
       @babies = current_user.babies
@@ -19,11 +20,12 @@ end
     erb :"/babies/new"
   end
 
-  # POST: /babies
+
   post "/babies" do
     redirect_if_not_logged_in
+    @babies = Baby.find_by_id(params[:id])
     unless Baby.valid_params?(params)
-      redirect "/babies/new?error=No Babies Here!"
+      redirect "/babies/new"
     end
     @babies = current_user.babies.create(name: params[:name], age: params[:age], gender: params[:gender])
     @babies.save
@@ -40,17 +42,17 @@ end
   # GET: /babies/5/edit
   get "/babies/:id/edit" do
     redirect_if_not_logged_in
-    @error_message = params[:error]
-    @babies = Baby.find_by(params[:id])
+      ##bootstrap login error
+    @babies = Baby.find_by_id(params[:id])
     erb :'babies/edit'
   end
 
   # PATCH: /babies/5
-  post "/babies/:id" do
+  post '/babies/:id' do
     redirect_if_not_logged_in
-    @babies = Baby.find(params[:id])
+    @babies = Baby.find_by_id(params[:id])
     unless Baby.valid_params?(params)
-      redirect "/babies/#{@babies.id}/edit?error=No Babies Here"
+      redirect "/babies/#{@babies.id}/edit"
     end
     @babies.update(name: params[:name], age: params[:age], gender: params[:gender])
     redirect "/babies/#{@babies.id}"

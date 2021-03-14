@@ -1,18 +1,15 @@
 
 <% @babies.each do |baby| %>
-    <%= baby.name %><br>
-    <%= baby.age %> <br>
-    <%= baby.gender %> <br>
-    <a href="/babies/<%=baby.id%>/edit">Edit</a>
-    <form method="post" action="/babies/<%= @babies.id %>/delete">
-      <input id="hidden" type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete">
-    </form>
-    post button
+  <h1> Name:  <%= baby.name %></h1><br>
+   <h2> Age: <%= baby.age %> </h2><br>
+   <h2> Gender: <%= baby.gender %> </h2> <br>
+
+   <a href="/babies/<%=baby.id%>/edit"class="btn btn-primary">Edit</a>
+   <a href="posts/new"class="btn btn-primary">New Post</a>
     <br />
     <br />
   <% end %>
 
   <br>
 
-  <a href="/babies/new">Add a Little One!</a>
+  <a href="/babies/new"class="btn btn-primary">Add a Little One!</a>

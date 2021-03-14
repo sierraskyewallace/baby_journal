@@ -16,7 +16,6 @@ class UsersController < ApplicationController
 end
 
   get '/login' do 
-    @error_message = params[:error]
     if !session[:user_id]
       erb :'users/login'
     else
@@ -29,8 +28,8 @@ end
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect "/babies"
-    else
-      redirect to '/register'
+    else 
+      erb :"users/login"
     end
   end
   

@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-  set :method_override, true
-  # GET: /posts
+
   get '/posts' do
     redirect_if_not_logged_in
     @posts = Post.all
@@ -13,14 +12,13 @@ class PostsController < ApplicationController
   end
 end
 
-  # GET: /posts/new
+
   get "/posts/new" do
     redirect_if_not_logged_in
     flash[:error] = "You must be logged in to create a post."
     erb :"posts/new"
   end
 
-  # POST: /posts
   post '/posts' do 
     redirect_if_not_logged_in
     unless Post.valid_params?(params)
@@ -30,17 +28,12 @@ end
     redirect '/posts'
 end
 
-
-  
-
-  # GET: /posts/5
   get "/posts/:id" do
     redirect_if_not_logged_in
     @posts = Post.find_by_id(params[:id])
     erb :'posts/show'
   end
 
-  # GET: /posts/5/edit
   get "/posts/:id/edit" do
     redirect_if_not_logged_in 
     @error_message = params[:error]
@@ -48,7 +41,6 @@ end
     erb :'posts/edit'
   end
 
-  # PATCH: /posts/5
     patch "/posts/:id" do
       redirect_if_not_logged_in
       @posts = Post.find(params[:id])
@@ -59,7 +51,6 @@ end
       redirect "/posts/#{@posts.id}"
     end
 
-  # DELETE: /posts/5/delete
   delete '/posts/:id/delete' do
     if logged_in?
       @posts = Post.find_by_id(params[:id])
@@ -71,4 +62,4 @@ end
       end
     end
   end
-  end
+end

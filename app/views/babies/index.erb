@@ -3,7 +3,7 @@
     <%= baby.name %><br>
     <%= baby.age %> <br>
     <%= baby.gender %> <br>
-    edit baby button
+    <a href="/babies/<%=baby.id%>/edit">Edit</a>
     <form method="post" action="/babies/<%= @babies.id %>/delete">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete">

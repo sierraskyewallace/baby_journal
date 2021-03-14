@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-
+  set :method_override, true
   # GET: /posts
   get '/posts' do
     redirect_if_not_logged_in
@@ -44,29 +44,31 @@ end
   get "/posts/:id/edit" do
     redirect_if_not_logged_in 
     @error_message = params[:error]
-    @posts = Post.find(params[:id])
+    @posts = Post.find_by_id(params[:id])
     erb :'posts/edit'
   end
 
   # PATCH: /posts/5
-  post "/posts/:id" do
-    redirect_if_not_logged_in 
-    @posts = Post.find(params[:id])
-    unless Post.valid_params?(params)
-      redirect "/posts/#{@post.id}/edit?error=No Posts Here!"
+    patch "/posts/:id" do
+      redirect_if_not_logged_in
+      @posts = Post.find(params[:id])
+      unless Post.valid_params?(params)
+        redirect "/posts/#{@posts.id}/edit?error=No Posts Here"
+      end
+      @posts.update(height: params[:height], weight: params[:weight], summary: params[:summary])
+      redirect "/posts/#{@posts.id}"
     end
-    @posts.Post(params.select{|p|p=="weight" || p=="height" || p=="baby_id"})
-    redirect "/posts/#{@post.id}"
-  end
 
   # DELETE: /posts/5/delete
   delete '/posts/:id/delete' do
     if logged_in?
-        @posts = Post.find_by_id(params[:id])
-          @posts.delete 
-       else 
-        redirect '/login'
+      @posts = Post.find_by_id(params[:id])
+      if @posts && @posts.user == current_user
+        @posts.delete
+        redirect "/posts"
+      else
+        redirect "/login"
+      end
     end
-    redirect '/posts'
-end
-end
+  end
+  end

@@ -1,7 +1,7 @@
   
 <h1>Edit Post</h1>
 
-<form action="/posts/<%=@posts.id %>" method="POST">
+<form action="/posts/<%=@posts.id %>" method="PATCH">
   <label> Weight </label>
   <input type="text" name="weight" value="<%=@posts.weight %>"> </br>
 
@@ -17,6 +17,6 @@
       <option value=<%=baby.id %> <%= "selected" if baby.id==@posts.baby.id %> ><%= baby.name %></option>
     <% end %>
   </select>
-
-  <input type="submit" value="Post">
+<br>
+  <input type="submit" value="Update Post">
 </form>

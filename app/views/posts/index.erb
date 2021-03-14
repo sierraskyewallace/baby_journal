@@ -1,19 +1,16 @@
 
 <% @posts.each do |post| %>
-  <h1><%= post.baby.name %></h1><br>
-  <%= post.height %><br>
-  <%= post.weight %> <br>
-  <%= post.summary %> <br>
-  <a href="/posts/<%=post.id%>/edit">Edit</a>
-  <form method="post" action="/posts/<%=post.id%>/delete">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Post">
-</form>
+  <h1>Baby Name:<%=  post.baby.name %></h1><br>
+  <h2>Height:<%=  post.height %></h2><br>
+ <h2> Weight:<%=  post.weight %></h2> <br>
+  <h3> Summary:<%=   post.summary %></h3> <br>
+<a href="/posts/<%=post.id%>/edit">Edit</a>
 
   <br />
   <br />
 <% end %>
 
 <br>
-
+</div>
+</div>
 <a href="/posts/new">Create Post</a>

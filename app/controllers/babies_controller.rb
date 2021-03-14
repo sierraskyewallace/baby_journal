@@ -52,15 +52,21 @@ end
     unless Baby.valid_params?(params)
       redirect "/babies/#{@babies.id}/edit?error=No Babies Here"
     end
-    @babies.update(params.select{|p|p=="name" || p=="age" || p=="gender"})
+    @babies.update(name: params[:name], age: params[:age], gender: params[:gender])
     redirect "/babies/#{@babies.id}"
   end
 
 
   # DELETE: /babies/5/delete
-  delete "/babies/:id/delete" do
-    @babies = Baby.find(params[:id])
-    Baby.destroy 
-    redirect "/babies/show"
+  delete '/babies/:id/delete' do
+    if logged_in?
+      @babies = Baby.find_by_id(params[:id])
+      if @babies && @babies.user == current_user
+        @babies.delete
+        redirect "/babies"
+      else
+        redirect "/login"
+      end
+    end
   end
-end 
+  end

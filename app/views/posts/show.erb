@@ -1,6 +1,9 @@
-<%= @posts.weight %><br />
-  <%= @posts.height %> <br />
-  Baby: <a href="/posts/<%=@posts.baby.id%>"><%= @posts.baby.name %></a> <br />
-  <a href="/posts/<%=@posts.id%>/edit">Edit</a>
-  <br />
-  <br />
+<h1> Baby: <a href="/posts/<%=@posts.baby.id%>"><%= @posts.baby.name %></a></h2> <br />
+<h2> Height: <%= @posts.height %></h1>
+<h2> Weight: <%= @posts.weight %></h2> <br>
+<h3> Summary: <%= @posts.summary %></h2>
+<form method="post" action="/posts/<%= @posts.id %>/delete">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete Post">
+    </form>
+</form>

@@ -15,6 +15,7 @@ end
 
   get "/posts/new" do
     redirect_if_not_logged_in
+    @babies = current_user.babies
     #flash[:error] = "You must be logged in to create a post."
     erb :"posts/new"
   end
@@ -25,6 +26,7 @@ end
       redirect "/posts/new?error=No Posts Here!"
     end
     @posts = current_user.posts.create(params)
+    @posts.save
     redirect '/posts'
 end
 

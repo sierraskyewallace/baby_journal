@@ -15,8 +15,6 @@ end
 
   get "/posts/new" do
     redirect_if_not_logged_in
-    @babies = Baby.all
-    @babies = current_user.babies
     #flash[:error] = "You must be logged in to create a post."
     erb :"posts/new"
   end
@@ -26,8 +24,7 @@ end
     unless Post.valid_params?(params)
       redirect "/posts/new"     ##change to flash error
     end
-
-    @posts = babies.posts.create(params)
+    @posts = current_user.posts.create(title: params[:title], height: params[:height], weight: params[:weight], summary: params[:summary])  ##change to params
     @posts.save
     redirect '/posts'
 end
@@ -51,7 +48,7 @@ end
       unless Post.valid_params?(params)
         redirect "/posts/#{@posts.id}/edit"
       end
-      @posts.update(height: params[:height], weight: params[:weight], summary: params[:summary])
+      @posts.update(title: params[:title], height: params[:height], weight: params[:weight], summary: params[:summary])   ##change to params
       redirect "/posts/#{@posts.id}"
     end
 

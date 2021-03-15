@@ -1,6 +1,7 @@
 
 <% @posts.each do |post| %>
-  <h1> <%= post.baby.name %></h1> <br>
+  <h1>Baby: <%= post.baby.name %></h1> <br>
+  <h2> Title: <% post.title %> </h2> <br>
   <h2>Height:<%=  post.height %></h2><br>
  <h2> Weight:<%=  post.weight %></h2> <br>
   <h3> Summary:<%=   post.summary %></h3> <br>

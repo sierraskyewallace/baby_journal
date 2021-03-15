@@ -11,11 +11,12 @@
   <input type="text" name="summary"placeholder="milestones"> </br>
 
   <label> Baby </label>
-  <select name="baby_id">
-    <% current_user.babies.each do |baby| %>
-      <option value=<%=baby.id %>><%= baby.name %></option>
-    <% end %>
-  </select>
+  <select name="baby[baby_id]">
+        <option value="">-</option>
+        <% @babies.each do |baby| %>
+          <option value="<%=baby.name%>"><%=baby.name%></option>
+        <% end %>
+    </select>
 
   <input type="submit" value="Create Post">
 </form>

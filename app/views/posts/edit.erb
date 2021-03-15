@@ -19,4 +19,9 @@
   </select>
 <br>
   <input type="submit" value="Update Post">
+  <br>
+  <form method="post" action="/posts/<%= post.id %>/delete">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete Post">
+    </form>
 </form>

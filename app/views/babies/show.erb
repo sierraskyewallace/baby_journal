@@ -1,8 +1,5 @@
 <h1><%= @babies.name %></h1>
 <br>
 <h2> Age: <%= @babies.age %></h2> <br>
-<h2> Gender: <%= @babies.gender %></h2>
-<form method="post" action="/babies/<%= @babies.id %>/delete">
-      <input id="hidden" type="hidden" name="_method" value="delete">
-      <input type="submit" value="Delete">
-    </form>
+<h2> Gender: <%= @babies.gender %></h2><br>
+<a href="posts/new"class="btn btn-primary">New Post</a>

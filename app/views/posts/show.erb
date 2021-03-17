@@ -1,5 +1,6 @@
-<h1> Baby: <a href="/posts/<%=@posts.baby.id%>"><%= @posts.baby.name %></a></h2> <br />
-<h2> Height: <%= @posts.height %></h1>
+<h1> Baby: <a href="/posts/<%=@posts.id%>"><%= @posts.baby.name if @posts.baby %></a></h2> <br />
+<h2> Title: <%= @posts.title %></h1><br>
+<h2> Height: <%= @posts.height %></h1><br>
 <h2> Weight: <%= @posts.weight %></h2> <br>
 <h3> Summary: <%= @posts.summary %></h2>
 <form method="post" action="/posts/<%= @posts.id %>/delete">

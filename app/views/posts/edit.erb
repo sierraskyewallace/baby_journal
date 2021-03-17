@@ -2,6 +2,9 @@
 <h1>Edit Post</h1>
 
 <form action="/posts/<%=@posts.id %>" method="PATCH">
+<label> Title </label>
+<input type="text" name="title" value="<%=@posts.title %>"> </br>
+
   <label> Weight </label>
   <input type="text" name="weight" value="<%=@posts.weight %>"> </br>
 
@@ -14,13 +17,13 @@
   <label> Baby </label>
   <select name="baby_id">
     <% current_user.babies.each do |baby| %>
-      <option value=<%=baby.id %> <%= "selected" if baby.id==@posts.baby.id %> ><%= baby.name %></option>
+      <option value=<%=baby.name %>><%= baby.name %></option>
     <% end %>
   </select>
 <br>
   <input type="submit" value="Update Post">
   <br>
-  <form method="post" action="/posts/<%= post.id %>/delete">
+  <form method="post" action="/posts/<%= @posts.id %>/delete">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete Post">
     </form>

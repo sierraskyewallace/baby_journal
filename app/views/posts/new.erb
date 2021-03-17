@@ -1,6 +1,10 @@
 <h1>Create a Post</h1>
 
 <form action="/posts" method="POST">
+  <label> Title </label>
+  <input type="text" name="title"placeholder="Title"> </br>
+
+<form action="/posts" method="POST">
   <label> Baby Weight </label>
   <input type="text" name="weight"placeholder="lbs"> </br>
 
@@ -10,12 +14,10 @@
   <label> Summary </label>
   <input type="text" name="summary"placeholder="milestones"> </br>
 
-  <label> Baby </label>
-  <select name="baby_id">
-    <% current_user.babies.each do |baby| %>
-      <option value=<%=baby.id %>><%= baby.name %></option>
-    <% end %>
-  </select>
-
+  <label> Baby </label><br>
+  <%Baby.all.each do |baby|%>
+    <input type="checkbox" name="post[baby_id]" id="<%=baby.id%>"  value="<%=baby.id%>"> <%=baby.name%></input>
+  <%end%>
+<br>
   <input type="submit" value="Create Post">
 </form>

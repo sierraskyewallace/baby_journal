@@ -3,9 +3,10 @@ class BabiesController < ApplicationController
     # GET: /babies
     get '/babies' do
       redirect_if_not_logged_in
-      @user = current_user
-      @babies = current_user.babies
+      @babies = Baby.all
       if logged_in?
+        @user = current_user
+      @babies = current_user.babies
       erb :'/babies/index'
       else 
         redirect '/login'
@@ -15,6 +16,7 @@ class BabiesController < ApplicationController
     # GET: /babies/new
     get "/babies/new" do
       redirect_if_not_logged_in
+      @posts = Post.all
       @error_message = params[:error]  ##change error to flash
       erb :"/babies/new"
     end

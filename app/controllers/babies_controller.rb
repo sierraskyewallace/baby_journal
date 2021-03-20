@@ -17,7 +17,7 @@ class BabiesController < ApplicationController
     get "/babies/new" do
       redirect_if_not_logged_in
       @posts = Post.all
-      @error_message = params[:error]  ##change error to flash
+        ##change error to flash
       erb :"/babies/new"
     end
   

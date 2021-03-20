@@ -15,9 +15,13 @@
   <input type="text" name="summary"placeholder="milestones"> </br>
 
   <label> Baby </label><br>
-  <%Baby.all.each do |baby|%>
-    <input type="checkbox" name="post[baby_id]" id="<%=baby.id%>"  value="<%=baby.id%>"> <%=baby.name%></input>
-  <%end%>
+
+  <select name="id">
+    <% current_user.babies.each do |baby| %>
+      <option value=<%=baby.id %>><%= baby.name %></option>        <!---CHANGE THIS---->
+    <% end %>
+  </select>
+
 <br>
   <input type="submit" value="Create Post">
 </form>

@@ -2,7 +2,7 @@ class BabiesController < ApplicationController
 
     # GET: /babies
     get '/babies' do
-      redirect_if_not_logged_in
+      authenticate_user
       @babies = Baby.all
       if logged_in?
         @user = current_user
@@ -15,7 +15,7 @@ class BabiesController < ApplicationController
   
     # GET: /babies/new
     get "/babies/new" do
-      redirect_if_not_logged_in
+      authenticate_user
       @posts = Post.all
         ##change error to flash
       erb :"/babies/new"
@@ -23,38 +23,38 @@ class BabiesController < ApplicationController
   
     # POST: /babies
     post "/babies" do
-      redirect_if_not_logged_in
+      authenticate_user
       unless Baby.valid_params?(params)
         redirect "/babies/new"                  ##change error to flash
       end
-      @babies = current_user.babies.create(name: params[:name], age: params[:age], gender: params[:gender])
+      @babies = current_user.babies.create(params)
       @babies.save
       redirect "/babies"  #may need to change 
     end
   
     # GET: /babies/5
     get "/babies/:id" do
-      redirect_if_not_logged_in
+      authenticate_user
       @babies = Baby.find_by_id(params[:id])
       erb :'babies/show'
     end
   
     # GET: /babies/5/edit
     get "/babies/:id/edit" do
-      redirect_if_not_logged_in
-      @error_message = params[:error]
-      @babies = Baby.find_by(params[:id])
+      authenticate_user
+      ###error message for redirect to login
+      @babies = Baby.find_by_id(params[:id])
       erb :'babies/edit'
     end
   
     # PATCH: /babies/5
     post "/babies/:id" do
-      redirect_if_not_logged_in
-      @babies = Baby.find(params[:id])
+      authenticate_user
+      @babies = Baby.find_by_slog(params[:id])
       unless Baby.valid_params?(params)
-        redirect "/babies/#{@babies.id}/edit?error=No Babies Here"
+        redirect "/babies/#{@babies.id}/edit"   ##change to flash error and redir
       end
-      @babies.update(params.select{|p|p=="name" || p=="age" || p=="gender"})
+      @babies.update(params)
       redirect "/babies/#{@babies.id}"
     end
   

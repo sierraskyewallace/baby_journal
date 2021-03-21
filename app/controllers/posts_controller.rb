@@ -21,12 +21,12 @@ end
   end
 
   post '/posts' do  ##clean up
-    #binding.pry
+    #binding.pry                                                   
     redirect_if_not_logged_in
     unless Post.valid_params?(params)
       redirect "/posts/new"     ##change to flash error
     end
-    @posts = current_user.posts.create(title: params[:title], height: params[:height], weight: params[:weight], summary: params[:summary])
+    @posts = current_user.posts.create(params)
     @posts.save
     redirect '/posts'
     end
@@ -51,9 +51,11 @@ end
       unless Post.valid_params?(params)
         redirect "/posts/#{@posts.id}/edit"
       end
-      @posts.update(title: params[:title], height: params[:height], weight: params[:weight], summary: params[:summary])   ##change to params
+      @posts = current_user.posts.update(params)
+      @posts.save  ##change to params
       redirect "/posts/#{@posts.id}"
     end
+
 
 
   delete '/posts/:id/delete' do

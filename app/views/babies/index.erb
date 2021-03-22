@@ -1,13 +1,15 @@
+<div class="container p-3 my-3 bg-dark text-white text-center"style="margin: 5em;">
 <% @babies.each do |baby| %>
-   <h1> Name: <%= baby.name %></h1><br>
-    <h2>Age: <%= baby.age %></h2> <br>
-   <h2>Gender: <%= baby.gender %> </h2><br>
+   <h5> Name | <%= baby.name %></h5><br>
+    <p>Age | <%= baby.age %></p> <br>
+   <p>Gender | <%= baby.gender %> </p><br>
     <a href="/babies/<%=baby.id%>/edit"class="btn btn-primary">Edit</a>
     <a href="/posts/new"class= "btn btn-primary">New Post</a>
     <br />
     <br />
   <% end %>
+</div>
+  <br/>
+  <br/>
 
-  <br>
-
-  <a href="/babies/new"class="btn btn-primary">Add a Little One!</a>
+  <a href="/babies/new"class="btn btn-primary">Add a Baby</a>

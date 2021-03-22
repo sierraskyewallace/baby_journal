@@ -57,14 +57,13 @@ end
   #end
 
   post '/register' do 
-    if valid_params 
       @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
+      if @user.save 
       session[:user_id] = @user.id
-      @user.save
-      redirect to '/babies'   #^^
+      redirect to '/babies'  
     else
       flash.now[:error] = "Invalid input. Please submit the form again."
-      erb: "users/register"
+      erb :"users/new"
     end
   end
 

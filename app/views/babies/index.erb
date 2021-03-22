@@ -1,8 +1,7 @@
 
 <div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 5em;">
-<h3>Babies</h3>
 <% @babies.each do |baby| %>
-   <h5> Name | <%= baby.name %></h5><br>
+   <h5><%= baby.name %></h5><br>
     <p>Age | <%= baby.age %></p> <br>
    <p>Gender | <%= baby.gender %> </p><br>
     <a href="/babies/<%=baby.id%>/edit"class="btn btn-primary btn-sm">Edit</a>
@@ -10,7 +9,7 @@
     <br />
     <br />
   <% end %>
-  <a href="/babies/new"class="btn btn-primary">Add a Baby</a>
+  <a href="/babies/new"class="btn btn-success">Add a Baby</a>
 </div>
   <br/>
   <br/>

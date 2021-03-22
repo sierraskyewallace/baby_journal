@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   get '/posts' do
-    redirect_if_not_logged_in
+    authenticate_user
     @posts = Post.all
     if logged_in?
       @user = current_user
@@ -14,7 +14,7 @@ end
 
 
   get "/posts/new" do
-    redirect_if_not_logged_in
+    authenticate_user
     @babies = Baby.all
     #flash[:error] = "You must be logged in to create a post."
     erb :"posts/new"
@@ -22,7 +22,7 @@ end
 
   post '/posts' do  ##clean up
     #binding.pry                                                   
-    redirect_if_not_logged_in
+    authenticate_user
     unless Post.valid_params?(params)
       redirect "/posts/new"     ##change to flash error
     end
@@ -33,20 +33,20 @@ end
   
 
   get "/posts/:id" do
-    redirect_if_not_logged_in
+    authenticate_user
     @posts = Post.find_by_id(params[:id])
     erb :'posts/show'
   end
 
   get "/posts/:id/edit" do          ##clean up
-    redirect_if_not_logged_in 
+    authenticate_user 
     #flash.now[:error] = "You must be logged in to do that."  ##bootstrap
     @posts = Post.find_by_id(params[:id])
     erb :'posts/edit'
   end
 
     patch "/posts/:id" do           ##clean up and fix so delete doesnt go to show, maybe move delte back to index???
-      redirect_if_not_logged_in
+      authenticate_user
       @posts = Post.find(params[:id])
       unless Post.valid_params?(params)
         redirect "/posts/#{@posts.id}/edit"

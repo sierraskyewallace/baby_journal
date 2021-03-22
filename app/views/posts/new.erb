@@ -1,24 +1,27 @@
+<div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 5em;">
 <h1>Create a Post</h1>
 
 <form action="/posts" method="POST">
-  <label> Title </label>
+  <label> Title </label><br>
   <input type="text" name="title"placeholder="Title"> </br>
-
+<br>
 <form action="/posts" method="POST">
-  <label> Baby Weight </label>
+  <label> Baby Weight </label><br>
   <input type="text" name="weight"placeholder="lbs"> </br>
-
-  <label> Baby Height </label>
+<br>
+  <label> Baby Height </label><br>
   <input type="text" name="height"placeholder="inches"> </br>
+<br>
+  <label> Summary </label><br>
+  <textarea class="form-control" id="summary"placeholder="milestones" rows="3"></textarea>
 
-  <label> Summary </label>
-  <input type="text" name="summary"placeholder="milestones"> </br>
-
+<br>
   <label> Baby </label><br>
   <% @babies.each do |baby| %>
     <input type="checkbox" name="baby_id" id="<%= baby.id %>" value="<%= baby.id %>"><%= baby.name %><br>
   <% end %>
 
 <br>
-  <input type="submit" value="Create Post">
+  <input type="submit" class="btn btn-success"value="Create Post">
 </form>
+</div>

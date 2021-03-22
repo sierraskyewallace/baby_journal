@@ -50,7 +50,7 @@ class BabiesController < ApplicationController
     # PATCH: /babies/5
     post "/babies/:id" do
       authenticate_user
-      @babies = Baby.find_by_slog(params[:id])
+      @babies = Baby.find_by_id(params[:id])
       unless Baby.valid_params?(params)
         redirect "/babies/#{@babies.id}/edit"   ##change to flash error and redir
       end

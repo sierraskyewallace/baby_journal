@@ -40,6 +40,7 @@ end
 
   get "/posts/:id/edit" do          ##clean up
     authenticate_user 
+    @babies = Baby.all
     #flash.now[:error] = "You must be logged in to do that."  ##bootstrap
     @posts = Post.find_by_id(params[:id])
     erb :'posts/edit'

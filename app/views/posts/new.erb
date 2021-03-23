@@ -3,7 +3,7 @@
 
 <form action="/posts" method="POST">
   <label> Title </label><br>
-  <input type="text" name="title"placeholder="Title"> </br>
+  <input type="text" name="title"placeholder="title"> </br>
 <br>
 <form action="/posts" method="POST">
   <label> Baby Weight </label><br>
@@ -13,12 +13,12 @@
   <input type="text" name="height"placeholder="inches"> </br>
 <br>
   <label> Summary </label><br>
-  <textarea class="form-control" id="summary"placeholder="milestones" rows="3"></textarea>
+  <input type="text" class="name="summary"placeholder="milestones, memories"> </br>
 
 <br>
-  <label> Baby </label><br>
+  <label> Baby </label><br><br>
   <% @babies.each do |baby| %>
-    <input type="checkbox" name="baby_id" id="<%= baby.id %>" value="<%= baby.id %>"><%= baby.name %><br>
+    <input type="checkbox" name="baby_id" id="<%= baby.id %>"value="<%= baby.id %>"><%= baby.name %><br><br>
   <% end %>
 
 <br>

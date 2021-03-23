@@ -1,14 +1,14 @@
 <div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 5em;">
-<h1>Edit <%= @babies.name %></h1><br>
+<h5>Edit <%= @babies.name %></h5><br>
 
 <form action="/babies/<%=@babies.id %>" method="POST">
-  <label> Name </label>
+  <label> Name </label><br>
   <input type="text" name="name" value="<%=@babies.name %>"> </br>
  <br>
-  <label> Age  </label>
+  <label> Age  </label><br>
   <input type="text" name="age" value="<%=@babies.age %>"> </br>
 <br>
-  <label> Gender </label>
+  <label> Gender </label><br>
   <input type="text" name="gender" value="<%=@babies.gender %>"> </br>
   <br>
   <input type="submit" class="btn btn-success"value="Update">

@@ -12,7 +12,7 @@
   <input type="text" name="height" placeholder="height"value="<%=@posts.height%>"> <br>
 <br>
  <label> Summary </label><br>
- <input type="text" name="summary" placeholder="milestones"value="<%=@posts.height%>"> <br>
+ <input type="text" name="summary" placeholder="milestones"value="<%=@posts.summary%>"> <br>
 
 <br>
   <label> Baby </label><br><br>
@@ -20,8 +20,8 @@
     <input type="checkbox" name="baby_id" id="<%= baby.id %>"value="<%= baby.id %>"><%= baby.name %><br><br>
   <% end %>
 <br>
-  <input type="submit" class="btn btn-primary"value="Update Post">
-  <br>
+  <input type="submit" class="btn btn-primary"style="margin: 2em;"value="Update Post">
+
   <form method="post" action="/posts/<%= @posts.id %>/delete">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" class="btn btn-danger"value="Delete Post">

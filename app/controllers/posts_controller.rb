@@ -24,13 +24,13 @@ end
     #binding.pry                                                   
     authenticate_user
     unless Post.valid_params?(params)
-      redirect "/posts/new"     ##change to flash error
+      redirect "/posts/new"
     end
     @posts = current_user.posts.create(params)
     @posts.save
     redirect '/posts'
     end
-  
+
 
   get "/posts/:id" do
     authenticate_user

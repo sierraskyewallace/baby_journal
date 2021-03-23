@@ -1,16 +1,22 @@
-
-<div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 5em;">
+<div class="row row-cols-1 row-cols-md-2"style="margin: 3em;">
 <% @babies.each do |baby| %>
-   <h5><%= baby.name %></h5><br>
+  <div class="col-md-4">
+        <div class="card text-center text-white bg-dark mb-3 w-40 h-20">
+        <div class="card-body">
+  <h5><%= baby.name %></h5><br>
     <p>Age | <%= baby.age %></p> <br>
    <p>Gender | <%= baby.gender %> </p><br>
     <a href="/babies/<%=baby.id%>/edit"class="btn btn-primary btn-sm">Edit</a>
     <a href="/posts/new"class= "btn btn-primary btn-sm">New Post</a>
     <br />
     <br />
-  <% end %>
-  <a href="/babies/new"class="btn btn-success">Add a Baby</a>
 </div>
+</div>
+</div>
+<% end %>
+</div>
+<br>
+<a href="/babies/new"class="btn btn-success"style="margin: 5em;">Add a Baby</a>
   <br/>
   <br/>
 

@@ -1,9 +1,9 @@
-<div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 5em;"> 
+<div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 30em;"> 
 <h5> <%= @posts.baby.name if @posts.baby %></p> <br />
-<p> Title | <%= @posts.title %></p><br>
-<p> Height | <%= @posts.height %></p><br>
-<p> Weight | <%= @posts.weight %></p> <br>
-<p> Summary | <%= @posts.summary %></p>
+<p> Title - <%= @posts.title %></p><br>
+<p> Height - <%= @posts.height %></p><br>
+<p> Weight - <%= @posts.weight %></p> <br>
+<p> Summary - <%= @posts.summary %></p>
 <form method="post" action="/posts/<%= @posts.id %>/delete">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" class="btn btn-danger"value="Delete Post">

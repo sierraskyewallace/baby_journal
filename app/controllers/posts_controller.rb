@@ -16,12 +16,11 @@ end
   get "/posts/new" do
     authenticate_user
     @babies = Baby.all
-    #flash[:error] = "You must be logged in to create a post."
+    #flash.now[:error] = "You must be logged in to do that."
     erb :"posts/new"
   end
 
-  post '/posts' do  ##clean up
-    #binding.pry                                                   
+  post '/posts' do                                                  
     authenticate_user
     unless Post.valid_params?(params)
       redirect "/posts/new"
@@ -38,22 +37,22 @@ end
     erb :'posts/show'
   end
 
-  get "/posts/:id/edit" do          ##clean up
+  get "/posts/:id/edit" do        
     authenticate_user 
     @babies = Baby.all
-    #flash.now[:error] = "You must be logged in to do that."  ##bootstrap
+    #flash[:error] = "You must be logged in to do that.""
     @posts = Post.find_by_id(params[:id])
     erb :'posts/edit'
   end
 
-    patch "/posts/:id" do           ##clean up and fix so delete doesnt go to show, maybe move delte back to index???
+    post "/posts/:id" do           ##clean up and fix so delete doesnt go to show, maybe move delete back to index???
       authenticate_user
       @posts = Post.find(params[:id])
       unless Post.valid_params?(params)
         redirect "/posts/#{@posts.id}/edit"
       end
       @posts = current_user.posts.update(params)
-      @posts.save  ##change to params
+      @posts.save  
       redirect "/posts/#{@posts.id}"
     end
 
@@ -64,9 +63,9 @@ end
       @posts = Post.find_by_id(params[:id])
       if @posts && @posts.user == current_user
         @posts.delete
-        redirect "/posts"
+        redirect '/posts'
       else
-        redirect "/login"
+        redirect '/login'
       end
     end
   end

@@ -1,4 +1,4 @@
-<div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 5em;"> 
+<div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 30em;"> 
 <h5>Edit Post</h5>
 <br>
 <form action="/posts/<%=@posts.id %>" method="PATCH">
@@ -16,14 +16,14 @@
 
 <br>
   <label> Baby </label><br><br>
-  <% @babies.each do |baby| %>
+  <% current_user.babies.each do |baby| %>
     <input type="checkbox" name="baby_id" id="<%= baby.id %>"value="<%= baby.id %>"><%= baby.name %><br><br>
   <% end %>
 <br>
   <input type="submit" class="btn btn-primary"style="margin: 2em;"value="Update Post">
-
+  </form>
   <form method="post" action="/posts/<%= @posts.id %>/delete">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" class="btn btn-danger"value="Delete Post">
     </form>
-</form>
+</div>

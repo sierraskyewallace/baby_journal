@@ -52,9 +52,10 @@ class BabiesController < ApplicationController
       authenticate_user
       @babies = Baby.find_by_id(params[:id])
       unless Baby.valid_params?(params)
-        redirect "/babies/#{@babies.id}/edit"   ##change to flash error and redir
+        redirect "/babies/#{@babies.id}/edit"   
       end
       @babies.update(params)
+      @babies.save
       redirect "/babies/#{@babies.id}"
     end
   

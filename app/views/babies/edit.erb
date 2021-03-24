@@ -1,4 +1,4 @@
-<div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 5em;">
+<div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 30em;">
 <h5>Edit <%= @babies.name %></h5><br>
 
 <form action="/babies/<%=@babies.id %>" method="POST">
@@ -11,7 +11,7 @@
   <label> Gender </label><br>
   <input type="text" name="gender" value="<%=@babies.gender %>"> </br>
   <br>
-  <input type="submit" class="btn btn-success"value="Update">
+  <input type="submit" class="btn btn-success"style="margin: 2em;"value="Update">
   <br>
   
 </form>

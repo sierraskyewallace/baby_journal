@@ -1,16 +1,21 @@
-
+<div class="row row-cols-1 row-cols-md-2"style="margin: 3em;">
 <% @posts.each do |post| %>
+  <div class="col-md-4">
+  <div class="card text-left text-white bg-dark mb-3 w-40 h-20">
+     <div class="card-body">
   <h5> <%= post.baby.name if post.baby %></h5> <br>   
-  <p> Title | <%= post.title %> </p> <br>
-  <p>Height | <%=  post.height %></p><br>
- <p> Weight | <%=  post.weight %></p> <br>
-  <p> Summary | <%= post.summary %></p> <br><br>
+  <p> Title -  <%= post.title %> </p> <br>
+  <p>Height - <%=  post.height %></p><br>
+ <p> Weight - <%=  post.weight %></p> <br>
+  <p> Summary - <%= post.summary %></p> <br><br>
+  <p> <%= post.created_at.to_s(:short)%></p>
 
 <a href="/posts/<%=post.id%>/edit" class="btn btn-primary">Edit</a><br>
-<br>
-<% end %>
-<a href="/posts/new"class="btn btn-success"style="margin: 5em;">Create Post</a>
-<br>
-<br>
 </div>
+</div>
+</div>
+<% end %>
+</div>
+<a href="/posts/new"class="btn btn-success"style="margin: 5em;">Create Post</a>
+
 

@@ -61,7 +61,7 @@ end
       if @user.save 
       session[:user_id] = @user.id
       redirect to '/babies'  
-    else
+      else
       flash.now[:error] = "Invalid input. Please submit the form again."
       erb :"users/new"
     end

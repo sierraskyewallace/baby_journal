@@ -17,7 +17,7 @@
 
 <br>
   <label> Baby </label><br><br>
-  <% @babies.each do |baby| %>
+  <% current_user.babies.each do |baby| %>
     <input type="checkbox" name="baby_id" id="<%= baby.id %>"value="<%= baby.id %>"><%= baby.name %><br><br>
   <% end %>
 

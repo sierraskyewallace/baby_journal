@@ -46,13 +46,12 @@
       </div>
     </nav>
       <% end %>
-    
+          
       <% flash.keys.each do |type| %>
         <div data-alert class="alert alert-danger">
           <%= flash[:error] %>
         </div>
-      <% end %>
-
+        <% end %>
 <%=yield%>
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>

@@ -3,8 +3,6 @@ class Post < ActiveRecord::Base
     belongs_to :user
 
     def self.valid_params?(params)
-      return !params.empty?
-end
-
-
-end
+      return   !params[:post] == ""
+    end
+  end

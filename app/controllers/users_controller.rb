@@ -44,18 +44,6 @@ end
     end
   end
 
-  #post '/register' do 
-   # if params[:username] == "" || params[:email] == "" || params[:password] == ""
-    #  flash.now[:error] = "Invalid input. Please submit form again."
-     # redirect to '/register'
-   # else
-    #  @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
-     # session[:user_id] = @user.id
-     # @user.save
-     # redirect to '/babies'   #^^
-    #end
-  #end
-
   post '/register' do 
       @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
       if @user.save 

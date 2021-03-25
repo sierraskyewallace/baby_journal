@@ -16,19 +16,21 @@ end
   get "/posts/new" do
     authenticate_user
     @babies = Baby.all
-    #flash.now[:error] = "You must be logged in to do that."
     erb :"posts/new"
   end
 
   post '/posts' do                                                  
     authenticate_user
     unless Post.valid_params?(params)
-      redirect "/posts/new"
+      flash[:error] = "Invalid input. Please fill out all fields below."
+      redirect 'posts/new'
     end
     @posts = current_user.posts.create(params)
     @posts.save
     redirect '/posts'
     end
+  
+
 
 
   get "/posts/:id" do
@@ -40,15 +42,15 @@ end
   get "/posts/:id/edit" do        
     authenticate_user 
     @babies = Baby.all
-    #flash[:error] = "You must be logged in to do that.""
     @posts = Post.find_by_id(params[:id])
     erb :'posts/edit'
   end
 
-    post "/posts/:id" do           ##clean up and fix so delete doesnt go to show, maybe move delete back to index???
+    post "/posts/:id" do         
       authenticate_user
-      @posts = Post.find(params[:id])
+      @posts = Post.find_by_id(params[:id])
       unless Post.valid_params?(params)
+        flash[:error] = "Invalid input. Please fill out all fields below."
         redirect "/posts/#{@posts.id}/edit"
       end
       @posts = current_user.posts.update(params)
@@ -56,8 +58,7 @@ end
       redirect "/posts/#{@posts.id}"
     end
 
-
-
+  
   delete '/posts/:id/delete' do
     if logged_in?
       @posts = Post.find_by_id(params[:id])

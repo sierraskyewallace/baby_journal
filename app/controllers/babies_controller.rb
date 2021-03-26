@@ -21,13 +21,17 @@ class BabiesController < ApplicationController
 
     post "/babies" do
       authenticate_user
-      unless Baby.valid_params?(params)
-        redirect "/babies/new"                 
-      end
+      @babies = Baby.find_by_id(params[:id])
       @babies = current_user.babies.create(params)
-      @babies.save
-      redirect "/babies" 
+        if @babies.save 
+          redirect "/babies"
+        else
+          flash[:error] = "Invalid input. Please try again."
+          redirect "/babies/new"
+        end
+      end
     end
+
   
 
     get "/babies/:id" do
@@ -45,13 +49,15 @@ class BabiesController < ApplicationController
     post "/babies/:id" do
       authenticate_user
       @babies = Baby.find_by_id(params[:id])
-      unless Baby.valid_params?(params)
-        redirect "/babies/#{@babies.id}/edit"   
-      end
       @babies.update(params)
-      @babies.save
-      redirect "/babies/#{@babies.id}"
+      if @babies.save 
+        redirect "/babies"
+      else
+        flash.now[:error] = "Invalid input. Please try again."
+        redirect "/babies/#{@babies.id}/edit"
+      end
     end
+
   
     delete '/babies/:id/delete' do
       if logged_in?
@@ -63,5 +69,4 @@ class BabiesController < ApplicationController
           redirect "/login"
         end
       end
-    end
     end

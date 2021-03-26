@@ -1,7 +1,7 @@
 <div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 30em;"> 
 <h5>Edit Post</h5>
 <br>
-<form action="/posts/<%=@posts.id %>" method="POST">
+<form action="/posts/<%=@posts.id %>" method="PATCH">
 <label> Title </label><br>
 <input type="text" name="title" value="<%=@posts.title %>"placeholder="title"required> <br>
 <br>

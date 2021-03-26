@@ -30,32 +30,33 @@ end
       redirect "posts/new"
     end
   end
-end
 
   get "/posts/:id" do
     authenticate_user
-    @posts = Post.find_by_id(params[:id])
+    @posts = Post.find(params[:id])
     erb :'posts/show'
   end
 
-  get '/posts/:id/edit' do        
-    authenticate_user 
-    @babies = Baby.all
-    @posts = Post.find_by_id(params[:id])
+  get "/posts/:id/edit" do        
+    authenticate_user
+    @posts = Post.find(params[:id])
     erb :'posts/edit'
   end
 
     post "/posts/:id" do         
       authenticate_user
+      @posts = Post.find_by_id(params[:id])
       if logged_in?
-        @posts.current_user.posts.update(params)
+        @posts = posts.update(params)
         @posts.save 
         redirect "posts/#{@posts.id}"
        else 
          redirect "posts/new"
        end
      end
-    end
+  
+
+  
 
   
   delete '/posts/:id/delete' do
@@ -68,3 +69,5 @@ end
         redirect '/login'
       end
     end
+  end
+end

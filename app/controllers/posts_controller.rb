@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     if logged_in?
       @user = current_user
-      @posts = current_user.posts
+      @posts = current_user.posts.order('created_at DESC')
     erb :'/posts/index'
     else 
       redirect '/login'
@@ -22,11 +22,11 @@ end
   post '/posts' do                                                  
     authenticate_user
     @posts = Post.find_by_id(params[:id])
-    if logged_in?
-     @posts = current_user.posts.create(params)
-     @posts.save 
+    @posts = current_user.posts.create(params)
+    if  @posts.save 
      redirect "/posts"
     else 
+      flash[:error] = "Invalid input. Please try again."
       redirect "posts/new"
     end
   end
@@ -47,17 +47,13 @@ end
       authenticate_user
       @posts = Post.find_by_id(params[:id])
       if logged_in?
-        @posts = posts.update(params)
-        @posts.save 
+        @posts.update(params)
         redirect "posts/#{@posts.id}"
        else 
-         redirect "posts/new"
+         redirect "/login"
        end
      end
   
-
-  
-
   
   delete '/posts/:id/delete' do
     if logged_in?

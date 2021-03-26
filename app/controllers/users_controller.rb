@@ -24,9 +24,9 @@ end
   end
 
   post "/login" do
-    user = User.find_by(:username => params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+    @user = User.find_by(:username => params[:username])
+    if @user.save && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
       redirect "/babies"
     else 
       flash.now[:error] = "Incorrect Username/Password. Please try again or Register above."
@@ -50,7 +50,7 @@ end
       session[:user_id] = @user.id
       erb :index
       else
-      flash.now[:error] = "Invalid input. Please submit the form again."
+      flash.now[:error] = "Please enter a valid email address."
       erb :"users/new"
     end
   end

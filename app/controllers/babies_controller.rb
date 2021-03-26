@@ -26,13 +26,11 @@ class BabiesController < ApplicationController
         if @babies.save 
           redirect "/babies"
         else
-          flash[:error] = "Invalid input. Please try again."
+          flash[:error] = "Invalid input type for Age field. Please enter a number."
           redirect "/babies/new"
         end
       end
-    end
 
-  
 
     get "/babies/:id" do
       authenticate_user
@@ -49,14 +47,14 @@ class BabiesController < ApplicationController
     post "/babies/:id" do
       authenticate_user
       @babies = Baby.find_by_id(params[:id])
-      @babies.update(params)
-      if @babies.save 
-        redirect "/babies"
-      else
-        flash.now[:error] = "Invalid input. Please try again."
-        redirect "/babies/#{@babies.id}/edit"
-      end
-    end
+      if logged_in?
+        @babies.update(params)
+        redirect "/babies/#{@babies.id}"
+       else 
+         redirect "/login"
+       end
+     end
+
 
   
     delete '/babies/:id/delete' do
@@ -70,3 +68,5 @@ class BabiesController < ApplicationController
         end
       end
     end
+  end
+

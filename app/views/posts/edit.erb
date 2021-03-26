@@ -1,15 +1,15 @@
 <div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 30em;"> 
 <h5>Edit Post</h5>
 <br>
-<form action="/posts/<%=@posts.id %>" method="PATCH">
+<form action="/posts/<%=@posts.id %>" method="POST">
 <label> Title </label><br>
 <input type="text" name="title" value="<%=@posts.title %>"placeholder="title"required> <br>
 <br>
   <label> Weight </label><br>
-  <input type="text" name="weight"value="<%=@posts.weight %>"placeholder="weight"required> <br>
+  <input type="integer" name="weight"value="<%=@posts.weight %>"placeholder="weight"required> <br>
 <br>
   <label> Height </label><br>
-  <input type="text" name="height"value="<%=@posts.height %>" placeholder="height"required> <br>
+  <input type="integer" name="height"value="<%=@posts.height %>" placeholder="height"required> <br>
 <br>
  <label> Summary </label><br>
  <input type="text" name="summary" value="<%=@posts.summary %>"placeholder="milestones"required> <br>

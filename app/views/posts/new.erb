@@ -3,23 +3,27 @@
 
 <form action="/posts" method="POST">
   <label> Title </label><br>
-  <input type="text" name="title"placeholder="title"> </br>
+  <input type="text"   name="title"placeholder="title"required> </br>
 <br>
-<form action="/posts" method="POST">
-  <label> Baby Weight </label><br>
-  <input type="text" name="weight"placeholder="lbs"> </br>
+  <label>  Weight </label><br>
+  <input type="text"  name="weight"placeholder="lbs"required> </br>
 <br>
-  <label> Baby Height </label><br>
-  <input type="text" name="height"placeholder="inches"> </br>
+  <label> Height </label><br>
+  <input type="text" name="height"placeholder="inches"required> </br>
 <br>
   <label> Summary </label><br>
-  <input type="text"name="summary"placeholder="milestones, memories"> </br>
+  <input type="text" name="summary"placeholder="milestones, memories"required> </br>
 
 <br>
   <label> Baby </label><br><br>
-  <% current_user.babies.each do |baby| %>
-    <input type="checkbox" name="baby_id" id="<%= baby.id %>"value="<%= baby.id %>"><%= baby.name %><br><br>
-  <% end %>
+  <select class="form-select"required name="baby_id"><option disabled selected value> -- select a baby-- </option>
+    <% current_user.babies.each do |baby| %>
+      <option value=<%=baby.id %>><%= baby.name %></option>
+    <% end %>
+  </select>
+ 
+
+  
 
 <br>
   <input type="submit" class="btn btn-success"value="Create Post">

@@ -1,25 +1,27 @@
 <div class="container w-25 p-3 my-3 bg-dark text-white text-center"style="margin: 30em;"> 
 <h5>Edit Post</h5>
 <br>
-<form action="/posts/<%=@posts.id %>" method="PATCH">
+<form action="/posts/<%=@posts.id %>" method="POST">
 <label> Title </label><br>
-<input type="text" name="title" placeholder="title"value="<%=@posts.title %>"> <br>
+<input type="text" name="title" value="<%=@posts.title %>"placeholder="title"required> <br>
 <br>
   <label> Weight </label><br>
-  <input type="text" name="weight"placeholder="weight" value="<%=@posts.weight %>"> <br>
+  <input type="text" name="weight"value="<%=@posts.weight %>"placeholder="weight"required> <br>
 <br>
   <label> Height </label><br>
-  <input type="text" name="height" placeholder="height"value="<%=@posts.height%>"> <br>
+  <input type="text" name="height"value="<%=@posts.height %>" placeholder="height"required> <br>
 <br>
  <label> Summary </label><br>
- <input type="text" name="summary" placeholder="milestones"value="<%=@posts.summary%>"> <br>
+ <input type="text" name="summary" value="<%=@posts.summary %>"placeholder="milestones"required> <br>
 
 <br>
   <label> Baby </label><br><br>
-  <% current_user.babies.each do |baby| %>
-    <input type="checkbox" name="baby_id" id="<%= baby.id %>"value="<%= baby.id %>"><%= baby.name %><br><br>
-  <% end %>
-<br>
+  <select class="form-select"required name="baby_id"><option disabled selected value> -- select a baby-- </option>
+    <% current_user.babies.each do |baby| %>
+      <option value=<%=baby.id %>><%= baby.name %></option>
+    <% end %>
+  </select>
+
   <input type="submit" class="btn btn-primary"style="margin: 2em;"value="Update Post">
   </form>
   <form method="post" action="/posts/<%= @posts.id %>/delete">

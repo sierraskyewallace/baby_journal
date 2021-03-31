@@ -1,5 +1,5 @@
 require './config/environment'
-require 'sinatra/flash'
+require 'rack-flash'
 class UsersController < ApplicationController
 
 

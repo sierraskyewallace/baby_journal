@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 end
 
   get '/login' do 
+    @users = User.all
     if !session[:user_id]
       erb :'users/login'
     else
@@ -24,9 +25,9 @@ end
   end
 
   post "/login" do
-    @user = User.find_by(:username => params[:username])
-    if @user.save && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
+    user = User.find_by(:username => params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
       redirect "/babies"
     else 
       flash.now[:error] = "Incorrect Username/Password. Please try again or Register above."

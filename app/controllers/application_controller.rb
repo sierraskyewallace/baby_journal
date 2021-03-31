@@ -2,10 +2,10 @@ require './config/environment'
 require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
-  use Rack::Flash
-  enable :sessions 
+
   
   configure do
+    use Rack::Flash
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions

@@ -5,13 +5,13 @@ class UsersController < ApplicationController
 
   get '/users/:id' do 
     if !logged_in?
-      redirect '/login'   #may need to change to specific login page 
+      redirect '/login'    
   end
   @user = User.find(params[:id])
   if !@user.nil? && @user == current_user
     erb :'users/show'
   else
-    redirect '/login' #may need to change to specific login page
+    redirect '/login' 
   end
 end
 
@@ -20,7 +20,7 @@ end
     if !session[:user_id]
       erb :'users/login'
     else
-      redirect '/babies'  #may need to change to specific login page
+      redirect '/babies'  
     end
   end
 

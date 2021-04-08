@@ -28,7 +28,7 @@ end
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/babies"
+      redirect "/"
     else 
       flash.now[:error] = "Incorrect Username/Password. Please try again or Register above."
       erb :"users/login"

@@ -67,16 +67,6 @@ end
     end
   end
 
-  get "/users/:slug" do
-    @user = User.find_by_slug(params[:slug])
-    if @user != current_user
-      redirect "/users/#{current_user.slug}"
-    else
-      @babies = @user.babies
-      redirect "/babies/index"
-    end
-  end
-
    
 
 end

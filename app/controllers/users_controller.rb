@@ -41,7 +41,7 @@ end
     if !session[:user_id]
       erb :'users/new'
     else 
-      redirect '/babies'
+      redirect '/'
     end
   end
 
@@ -66,9 +66,6 @@ end
       redirect to '/'
     end
   end
-
-   
-
 end
 
 
